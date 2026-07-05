@@ -275,6 +275,68 @@
     }
     .cursor-dot.active{ transform: translate(-50%,-50%) scale(0.5); background: var(--amber); }
   }
+
+#waDialog {
+    /* Posisi di tengah */
+    margin: auto;
+    position: fixed;
+    z-index: 100000;
+
+    /* Tampilan Kaca (Glassmorphism) */
+    background: rgba(18, 25, 33, 0.7); /* Background gelap transparan */
+    backdrop-filter: blur(15px);        /* Efek blur kaca utama */
+    -webkit-backdrop-filter: blur(15px); /* Dukungan untuk Safari */
+    
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Border tipis untuk kesan premium */
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); /* Bayangan dalam */
+    
+    /* Layout */
+    width: 600px;
+    max-width: 90%;
+    padding: 40px;
+    color: #ffffff;
+    text-align: center;
+}
+
+#waDialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px); /* Blur pada area di luar popup */
+}
+
+#waDialog h2 {
+    color: #47e8c4;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+#waDialog p {
+    color: #c7d0dd;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+#waDialog button {
+    margin-top: 25px;
+    padding: 12px 30px;
+    
+    /* Gaya tombol kaca yang matching */
+    background: rgba(71, 232, 196, 0.1); 
+    border: 1px solid #47e8c4;
+    color: #47e8c4;
+    
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#waDialog button:hover {
+    background: #47e8c4;
+    color: #121921;
+    box-shadow: 0 0 20px rgba(71, 232, 196, 0.3);
+}
+  
 </style>
 </head>
 <body>
@@ -439,16 +501,30 @@
     <div class="contact-box">
       <div class="eyebrow" style="text-align:center;">// Contact</div>
       <h2>Let's have a discussion.</h2>
-      <p>Feel free to contact me via email or social media. I am open to discussions, collaborations, as well as internship and career opportunities.</p>
+      <p>Feel free to contact me via email or social media.</p>
       <div class="contact-links">
         <a href="https://www.instagram.com/ariftp_/" target="_blank">📷 Instagram</a>
-        <a href="https://www.whatsapp.com/" target="_blank">💬 WhatsApp</a>
-        
+        <a href="#" onclick="document.getElementById('waDialog').showModal(); return false;">
+          💬 WhatsApp
+        </a>
       </div>
     </div>
   </div>
 </section>
 
+<dialog id="waDialog">
+    <h2>💬 WhatsApp</h2>
+    <p>Halo 👋</p>
+    <p>Terima kasih telah mengunjungi portfolio saya.</p>
+    <p>Untuk menjaga privasi, nomor WhatsApp tidak saya tampilkan secara publik.</p>
+    <p>Silakan hubungi saya melalui Instagram terlebih dahulu.</p>
+    
+    <button type="button" onclick="this.closest('dialog').close();">
+        Mengerti
+    </button>
+</dialog>
+</dialog>
+  
 <footer>© 2026 - Arif Tri Prawito</footer>
 
 <div class="cursor-ring" id="cursorRing"></div>
